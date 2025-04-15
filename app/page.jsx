@@ -11,7 +11,6 @@ import RecipeSearch from "@/components/Search"
 export default function Home() {
   return (
     <>
-      <Header />
         <HeaderHero />
         <CulinaryPhilosophy/>
         {/* <HeroSection /> */}
