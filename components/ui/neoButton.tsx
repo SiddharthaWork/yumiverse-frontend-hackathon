@@ -25,10 +25,11 @@ export default function NeoBrutalismButton({ text = "Click Me", color = "yellow"
       className={`
         relative font-bold uppercase tracking-wider
         text-base sm:text-lg md:text-xl lg:text-2xl
-        py-3 px-5 sm:py-4 sm:px-6 md:py-4 md:px-7 lg:py-5 lg:px-8
+        py-3 px-5 sm:py-4 sm:px-6 md:py-4 md:px-7 lg:py-5 lg:px-10
         ${colorMap[color]} 
         border-2 sm:border-3 md:border-4 border-black
-        transition-all duration-150
+        transition-all duration-200
+        hover:-rotate-1 transform
         ${isPressed 
           ? "translate-x-[2px] translate-y-[2px] sm:translate-x-[3px] sm:translate-y-[3px] md:translate-x-[4px] md:translate-y-[4px] shadow-none" 
           : "shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"

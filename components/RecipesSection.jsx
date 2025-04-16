@@ -1,19 +1,48 @@
+"use client"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { recipes } from "../data/recipes"
+import { recipes, cuisineCategories } from "../data/recipes"
+import RecipeSearch from "./Search"
+import { ArrowDown, CookingPotIcon, LifeBuoy, LifeBuoyIcon } from "lucide-react"
 
 export default function RecipesSection() {
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  const filteredRecipes = recipes.filter(recipe => 
+    selectedCategory === "All" ? true : recipe.cuisine === selectedCategory
+  )
+
   return (
-    <section className="py-12 relative">
+    <section id="recipes-section" className="py-12 relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-black mb-8">Super Delicious</h2>
+        <h2 className="text-4xl font-black mb-8">Find Your Taste</h2>
+        <RecipeSearch />
+
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap gap-4 mb-8 mt-6">
+          {cuisineCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2.5 font-bold text-sm uppercase tracking-wider border-2 border-black rounded-full 
+                ${selectedCategory === category 
+                  ? 'bg-black text-white transform -rotate-2 scale-105 transition-transform' 
+                  : 'bg-white hover:bg-gray-100 rotate-1 hover:-rotate-1 transition-transform'}
+                shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                active:shadow-none active:translate-x-1 active:translate-y-1`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recipes.map((recipe) => (
+          {filteredRecipes.map((recipe) => (
             <Link
               href={`/recipe/${recipe.slug}`}
               key={recipe.id}
-              className="neo-card overflow-hidden group relative"
+              className="neo-card overflow-hidden group relative transform hover:-rotate-1 transition-transform"
             >
               {/* Category indicator (veg/non-veg) */}
               <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-white px-2 py-1 rounded-full border-2 border-black">
@@ -46,8 +75,13 @@ export default function RecipesSection() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="p-3 bg-neo-pink">
-                <h3 className="font-bold text-center mb-2">{recipe.name}</h3>
+              <div className="p-3 bg-[#f5f0e6]">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="px-2 py-0.5 bg-white text-xs font-bold border-2 border-black rounded-full rotate-[-2deg] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    {recipe.cuisine}
+                  </span>
+                  <h3 className="font-bold text-center">{recipe.name}</h3>
+                </div>
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-6 h-6 rounded-full overflow-hidden border border-black">
                     <Image
@@ -63,6 +97,12 @@ export default function RecipesSection() {
               </div>
             </Link>
           ))}
+        </div>
+        <div className="flex justify-center md:mt-10 mt-6 xl:mt-16 ">
+          <button className="group relative gap-2 flex items-center border-[6px] border-black hover:bg-[#FF6B6B] text-black bg-white px-6 py-2 text-xl font-black uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            Load More
+            {/* <ArrowDown className="h-6 w-6" /> */}
+          </button>
         </div>
       </div>
 

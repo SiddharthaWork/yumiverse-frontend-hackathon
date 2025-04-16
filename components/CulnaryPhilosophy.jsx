@@ -4,10 +4,10 @@ export default function CulinaryPhilosophy() {
   return (
     <section className="py-12 md:py-16 bg-[#f5f5f5]">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Header with bold typography */}
           <div className="mb-8 md:mb-12 relative">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight relative z-10">
+            <h2 className="text-4xl md:text-4xl font-black tracking-tight relative z-10">
               OUR CULINARY
               <br />
               PHILOSOPHY
@@ -81,7 +81,7 @@ export default function CulinaryPhilosophy() {
           {/* Bold statement with neo-brutalist styling */}
           <div className="mt-12 md:mt-16 p-6 md:p-8 bg-black text-white border-2 md:border-4 border-neo-yellow relative overflow-hidden">
             <div className="absolute top-0 right-0 w-16 md:w-20 h-12 md:h-20 bg-neo-yellow rotate-45 translate-x-6 -translate-y-6"></div>
-            <h3 className="text-2xl md:text-3xl font-black mb-3 max-w-3xl">
+            <h3 className="text-2xl md:text-3xl font-black mb-3 max-w-4xl">
               "WE DON'T JUST MAKE RECIPES. WE CRAFT EXPERIENCES THAT CELEBRATE THE JOY OF COOKING."
             </h3>
             <p className="text-lg md:text-xl max-w-2xl">

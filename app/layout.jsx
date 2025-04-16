@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       <Header />
         {children}
+      <Footer/>
         </body>
     </html>
   )
@@ -22,3 +23,4 @@ export default function RootLayout({ children }) {
 
 
 import './globals.css'
+import Footer from "@/components/Footer"
