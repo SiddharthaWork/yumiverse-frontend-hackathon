@@ -1,35 +1,37 @@
 import Image from "next/image"
 import Link from "next/link"
-
-const categories = [
-  { name: "Smoothies", image: "/images/smoothies.jpg" },
-  { name: "Pizza", image: "/images/pizza.jpg" },
-  { name: "Desserts", image: "/images/desserts.jpg" },
-  { name: "Breakfast", image: "/images/breakfast.jpg" },
-]
+import { recipes } from "@/data/recipes"
 
 export default function CategoriesSection() {
+  // Get 4 random recipes from the recipes array
+  const getRandomRecipes = () => {
+    const shuffled = [...recipes].sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, 4)
+  }
+
+  const randomRecipes = getRandomRecipes()
+
   return (
-    <section className="py-12 bg-neo-green relative overflow-hidden">
+    <section className="py-12 bg-neo-green relative overflow-hidden" id="categories-section">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-black mb-8">Fan Favorites</h2>
+        <h2 className="text-4xl font-black mb-8">Fan Favorites</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {categories.map((category) => (
+          {randomRecipes.map((recipe) => (
             <Link
-              href={`/category/${category.name.toLowerCase()}`}
-              key={category.name}
+              href={`/recipe/${recipe.slug}`}
+              key={recipe.id}
               className="neo-card overflow-hidden group"
             >
               <div className="aspect-square relative">
                 <Image
-                  src={category.image || "/placeholder.svg?height=300&width=300"}
-                  alt={category.name}
+                  src={recipe.image || "/placeholder.svg?height=300&width=300"}
+                  alt={recipe.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="p-2 text-center font-bold">{category.name}</div>
+              <div className="p-2 text-center font-bold">{recipe.name}</div>
             </Link>
           ))}
         </div>
