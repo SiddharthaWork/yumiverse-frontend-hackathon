@@ -52,7 +52,7 @@ const HeaderHero = () => {
                             Food
                             <br />
                             Recipes
-                        <img src="/chef.png" alt="" className='absolute top-2 w-[3rem] h-[3rem] xl:w-[8rem] xl:h-[8rem]  md:rotate-[43deg] rotate-[60deg] right-16 md:left-[32rem] lg:left-[25rem] w-[6rem] h-[6rem] sm:w-[7rem] sm:h-[7rem] md:w-[8rem] md:h-[8rem] lg:w-[10rem] lg:h-[10rem] xl:w-[11rem] xl:h-[11rem]' />
+                        <img src="/chef.png" alt="" className='absolute md:top-2 top-20 md:right-0 right-18 w-[3rem] h-[3rem] xl:w-[8rem] xl:h-[8rem]  md:rotate-[43deg] rotate-[75deg] right-16 md:left-[32rem] lg:left-[25rem] w-[6rem] h-[6rem] sm:w-[7rem] sm:h-[7rem] md:w-[8rem] md:h-[8rem] lg:w-[10rem] lg:h-[10rem] xl:w-[11rem] xl:h-[11rem]' />
                         </h1>
                     </div>
                     <div className='flex flex-col lg:flex-row items-center gap-8 lg:gap-12 xl:gap-16 z-40'>

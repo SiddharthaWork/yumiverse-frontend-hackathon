@@ -12,7 +12,7 @@ export default function CategoriesSection() {
   const randomRecipes = getRandomRecipes()
 
   return (
-    <section className="py-12 bg-neo-green relative overflow-hidden" id="categories-section">
+    <section className="py-12 bg-neo-green relative overflow-hidden z-40" id="categories-section">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-black mb-8">Fan Favorites</h2>
 
@@ -38,8 +38,8 @@ export default function CategoriesSection() {
       </div>
 
       {/* Decorative circles */}
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-4 border-black rounded-full opacity-20 -mb-10 -mr-10"></div>
-      <div className="absolute bottom-20 right-20 w-16 h-16 border-4 border-black rounded-full opacity-20"></div>
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-4 border-black rounded-full opacity-20 -mb-10 -mr-10 -z-30"></div>
+      <div className="absolute bottom-20 right-20 w-16 h-16 border-4 border-black rounded-full opacity-20 z-30"></div>
     </section>
   )
 }

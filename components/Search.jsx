@@ -20,13 +20,22 @@ export default function RecipeSearch() {
   const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false)
 
   const filteredRecipes = recipes.filter((recipe) => {
-    const matchesSearch = recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         recipe.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         recipe.cuisine.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = selectedCategory === "All" || recipe.category === selectedCategory.toLowerCase()
-    const matchesDifficulty = selectedDifficulty === "All" || recipe.difficulty === selectedDifficulty.toLowerCase()
-    return matchesSearch && matchesCategory && matchesDifficulty
-  })
+    const matchesSearch = searchQuery === "" || 
+      recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      recipe.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      recipe.cuisine.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory = selectedCategory === "All" || 
+      recipe.category.toLowerCase() === selectedCategory.toLowerCase();
+
+    const matchesDifficulty = selectedDifficulty === "All" || 
+      recipe.difficulty.toLowerCase() === selectedDifficulty.toLowerCase();
+
+    return matchesSearch && matchesCategory && matchesDifficulty;
+  });
+
+  // Show filtered results even when search query is empty
+  const shouldShowResults = searchQuery !== "" || selectedCategory !== "All" || selectedDifficulty !== "All";
 
   return (
     <div className="w-full max-w-4xl xl:my-8 my-4 z-50">
@@ -67,10 +76,12 @@ export default function RecipeSearch() {
           <div className="relative">
             <Button
               onClick={() => {
-                setShowCategoryDropdown(!showCategoryDropdown)
-                setShowDifficultyDropdown(false)
+                setShowCategoryDropdown(!showCategoryDropdown);
+                setShowDifficultyDropdown(false);
               }}
-              className="bg-[#FF5252] hover:bg-[#FF3838] text-white border-4 border-black font-bold py-2 px-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
+              className={`bg-[#FF5252] hover:bg-[#FF3838] text-white border-4 border-black font-bold py-2 px-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all ${
+                selectedCategory !== "All" ? "ring-2 ring-black ring-offset-2" : ""
+              }`}
             >
               {selectedCategory} <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
@@ -79,10 +90,12 @@ export default function RecipeSearch() {
                 {categories.map((category) => (
                   <div
                     key={category}
-                    className="px-4 py-2 hover:bg-[#FF5252] hover:text-white cursor-pointer font-medium"
+                    className={`px-4 py-2 hover:bg-[#FF5252] hover:text-white cursor-pointer font-medium ${
+                      selectedCategory === category ? "bg-[#FF5252] text-white" : ""
+                    }`}
                     onClick={() => {
-                      setSelectedCategory(category)
-                      setShowCategoryDropdown(false)
+                      setSelectedCategory(category);
+                      setShowCategoryDropdown(false);
                     }}
                   >
                     {category}
@@ -96,10 +109,12 @@ export default function RecipeSearch() {
           <div className="relative">
             <Button
               onClick={() => {
-                setShowDifficultyDropdown(!showDifficultyDropdown)
-                setShowCategoryDropdown(false)
+                setShowDifficultyDropdown(!showDifficultyDropdown);
+                setShowCategoryDropdown(false);
               }}
-              className="bg-[#4CAF50] hover:bg-[#45a049] text-white border-4 border-black font-bold py-2 px-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
+              className={`bg-[#4CAF50] hover:bg-[#45a049] text-white border-4 border-black font-bold py-2 px-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all ${
+                selectedDifficulty !== "All" ? "ring-2 ring-black ring-offset-2" : ""
+              }`}
             >
               {selectedDifficulty} <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
@@ -108,10 +123,12 @@ export default function RecipeSearch() {
                 {difficulties.map((difficulty) => (
                   <div
                     key={difficulty}
-                    className="px-4 py-2 hover:bg-[#4CAF50] hover:text-white cursor-pointer font-medium"
+                    className={`px-4 py-2 hover:bg-[#4CAF50] hover:text-white cursor-pointer font-medium ${
+                      selectedDifficulty === difficulty ? "bg-[#4CAF50] text-white" : ""
+                    }`}
                     onClick={() => {
-                      setSelectedDifficulty(difficulty)
-                      setShowDifficultyDropdown(false)
+                      setSelectedDifficulty(difficulty);
+                      setShowDifficultyDropdown(false);
                     }}
                   >
                     {difficulty}
@@ -123,9 +140,11 @@ export default function RecipeSearch() {
         </div>
 
         {/* Search results with neo-brutalism style */}
-        {searchQuery && (
+        {shouldShowResults && (
           <div className="mt-4 bg-[#f5f0e6] border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            <h3 className="text-xl font-bold mb-4 uppercase">Search Results</h3>
+            <h3 className="text-xl font-bold mb-4 uppercase">
+              {filteredRecipes.length > 0 ? `Found ${filteredRecipes.length} Recipes` : "No Recipes Found"}
+            </h3>
             {filteredRecipes.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredRecipes.map((recipe) => (
