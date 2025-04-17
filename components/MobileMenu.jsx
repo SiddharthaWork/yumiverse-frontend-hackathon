@@ -7,6 +7,15 @@ import { Menu, X } from "lucide-react"
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const scrollToSection = (sectionId) => (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start"
+    });
+  };
+  
   return (
     <div className="md:hidden">
       <button onClick={() => setIsOpen(!isOpen)} className="p-2" aria-label={isOpen ? "Close menu" : "Open menu"}>
@@ -21,16 +30,28 @@ export default function MobileMenu() {
             </button>
           </div>
           <nav className="flex flex-col items-center gap-6 p-8">
-            <Link href="/recipes" className="text-xl font-bold" onClick={() => setIsOpen(false)}>
-              Recipes
+            <Link href="/" className="text-xl font-bold" onClick={() => setIsOpen(false)}>
+              Home
             </Link>
-            <Link href="/popular" className="text-xl font-bold" onClick={() => setIsOpen(false)}>
-              Popular
-            </Link>
-            <Link href="/healthy" className="text-xl font-bold" onClick={() => setIsOpen(false)}>
-              Healthy
-            </Link>
-            <Link href="/login" className="text-xl font-bold mt-4" onClick={() => setIsOpen(false)}>
+            <button 
+            onClick={scrollToSection('categories-section')}
+            className="font-medium hover:underline"
+          >
+            Popular
+          </button>
+          <button 
+            onClick={scrollToSection('recipes-section')}
+            className="font-medium hover:underline"
+          >
+            Recipes
+          </button>
+          <button 
+            onClick={scrollToSection('subscribe')}
+            className="font-medium hover:underline"
+          >
+            Subscribe
+          </button>
+            <Link href="/" className="text-xl font-bold mt-4" onClick={() => setIsOpen(false)}>
               Login
             </Link>
             <Link
