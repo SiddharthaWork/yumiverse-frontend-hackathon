@@ -41,10 +41,11 @@ export default function HeroSection() {
 
   return (
     <section className="py-8 dot-pattern ">
+      {/* This is the hero section */}
       <div className="container mx-auto px-4">
-        <div className="neo-card md:h-fit h-[30rem] max-w-4xl mx-auto overflow-hidden">
+        <div className="neo-card h-fit max-w-4xl mx-auto overflow-hidden">
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 relative md:h-[400px] h-[250px]">
+            <div className="md:w-1/2 relative md:h-[400px] h-[200px]">
               <Image
                 src={randomRecipe.image}
                 alt={randomRecipe.name}
@@ -53,7 +54,7 @@ export default function HeroSection() {
                 priority
               />
             </div>
-            <div className="md:w-1/2 p-8 bg-white flex flex-col justify-center">
+            <div className="md:w-1/2 md:p-8 p-4 bg-white flex flex-col justify-center">
               <h2 className="text-3xl font-black mb-4">{randomRecipe.name}</h2>
               <p className="mb-6">
                 {randomRecipe.description}
