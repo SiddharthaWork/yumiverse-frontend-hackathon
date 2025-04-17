@@ -41,6 +41,7 @@ export default function HeroSection() {
 
   return (
     <section className="py-8 dot-pattern ">
+      {/* This is the hero section */}
       <div className="container mx-auto px-4">
         <div className="neo-card h-fit max-w-4xl mx-auto overflow-hidden">
           <div className="flex flex-col md:flex-row">
