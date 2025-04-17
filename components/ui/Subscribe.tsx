@@ -22,7 +22,7 @@ export default function SubscribeSection() {
   }
 
   return (
-    <section className="w-full py-4 sm:py-6 md:py-8 lg:py-12 dot-pattern bg-[#f5f5f5]">
+    <section className="w-full py-4 sm:py-6 md:py-8 lg:py-12 dot-pattern bg-[#f5f5f5]" id="subscribe">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex flex-col lg:flex-row items-start gap-6 lg:gap-8 xl:gap-12">
           {/* Main subscription box */}

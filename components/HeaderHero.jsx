@@ -70,7 +70,7 @@ const HeaderHero = () => {
                             </div>
                         </div>
                         <div className='pl-0 lg:pl-8 xl:pl-10 z-30 relative'>
-                            <h1 className='font-bold mb-2 text-center lg:text-left'>Recipe of Day</h1>
+                            <h1 className='font-bold mb-2 text-center lg:text-left font-mono'>Recipe of Day</h1>
                             <RecipeDetails />
                         </div>
                     </div>
@@ -80,7 +80,7 @@ const HeaderHero = () => {
             {/* Right Section */}
             <div className='w-full lg:w-[40%] xl:w-[35%] h-full flex flex-col'>
                 <div className='w-full h-auto lg:h-[55%] bg-[#9d8cff] py-6 sm:py-8 lg:py-0'>
-                    <div className='w-full h-full flex flex-col gap-y-6 sm:gap-y-8 lg:gap-y-[2.5rem] xl:gap-y-[3rem] px-4 sm:px-6 lg:pr-6 xl:pr-8 lg:px-0 justify-center items-center lg:items-end relative'>
+                    <div className='w-full h-full md:pl-0 pl-24 flex flex-col gap-y-6 sm:gap-y-8 lg:gap-y-[2.5rem] xl:gap-y-[3rem] px-4 sm:px-6 lg:pr-6 xl:pr-8 lg:px-0 justify-center items-center lg:items-end relative'>
                         {/* Food Category Cards */}
                         <div className="aspect-video w-[10rem] sm:w-[14rem] h-[5rem] sm:h-[7rem] rounded-lg border-2 border-black relative z-10">
                             <img src="/salad.png" alt="Tropical Tuna Delight Salad" className="w-full h-full object-cover" />

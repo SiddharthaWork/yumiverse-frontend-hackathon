@@ -25,6 +25,12 @@ export default function RecipeDetailPage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isSaved, setIsSaved] = useState(false)
   const [itemsPerSlide, setItemsPerSlide] = useState(3)
+  const [communityPosts, setCommunityPosts] = useState([])
+  const [newComment, setNewComment] = useState({})
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [newPostTitle, setNewPostTitle] = useState("")
+  const [isUploading, setIsUploading] = useState(false)
+  const fileInputRef = useRef(null)
   const communityRef = useRef(null)
   const params = useParams()
   const slug = params.slug
@@ -52,9 +58,79 @@ export default function RecipeDetailPage() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  useEffect(() => {
+    if (recipe) {
+      setCommunityPosts(recipe.communityPics)
+    }
+  }, [recipe])
+
   const scrollToCommunity = () => {
     communityRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handlePost = () => {
+    if (selectedImage) {
+      const newPost = {
+        id: Date.now(),
+        userName: "You",
+        userAvatar: "/chefavatar.png",
+        timeAgo: "Just now",
+        image: selectedImage,
+        title: newPostTitle || "My Recipe Creation",
+        comment: "",
+        likes: 0,
+        comments: 0,
+        isLiked: false,
+        topComment: null
+      }
+      setCommunityPosts(prev => [newPost, ...prev])
+      setNewPostTitle("")
+      setSelectedImage(null)
+    }
+  }
+
+  const handleLike = (postId) => {
+    setCommunityPosts(prev => prev.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          likes: post.isLiked ? post.likes - 1 : post.likes + 1,
+          isLiked: !post.isLiked
+        }
+      }
+      return post
+    }))
+  }
+
+  const handleComment = (postId, comment) => {
+    if (!comment.trim()) return
+    
+    setCommunityPosts(prev => prev.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          comments: post.comments + 1,
+          topComment: {
+            userName: "You",
+            comment: comment
+          }
+        }
+      }
+      return post
+    }))
+    setNewComment(prev => ({...prev, [postId]: ""}))
+  }
 
   if (!recipe) {
     return (
@@ -408,33 +484,103 @@ export default function RecipeDetailPage() {
 
                 {/* Photo Upload Section */}
                 <div className="p-4 border-b-4 border-black bg-green-200">
-                  <div className="flex flex-col gap-2 items-start">
+                  <div className="flex flex-col gap-2 items-start w-full">
                     <h3 className="text-lg font-bold">Made this recipe?</h3>
-                    <button className="flex items-center px-4 py-2 bg-pink-400 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-sm">
-                      <Camera className="mr-2" size={16} />
-                      Share Your Photo
-                    </button>
+                    
+                    {!selectedImage ? (
+                      <>
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          onChange={handleImageSelect}
+                          accept="image/*"
+                          className="hidden"
+                        />
+                        <button 
+                          onClick={() => fileInputRef.current?.click()}
+                          className="flex items-center px-4 py-2 bg-pink-400 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-sm"
+                        >
+                          <Camera className="mr-2" size={16} />
+                          Choose Your Photo
+                        </button>
+                      </>
+                    ) : (
+                      <div className="w-full space-y-4">
+                        {/* Image Preview */}
+                        <div className="relative w-full h-48 border-4 border-black rounded-lg overflow-hidden">
+                          <Image
+                            src={selectedImage}
+                            alt="Preview"
+                            fill
+                            className="object-cover"
+                          />
+                          <button 
+                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full border-2 border-black"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                        
+                        {/* Title Input */}
+                        <div className="space-y-2">
+                          <label className="font-bold text-sm">Give your creation a title:</label>
+                          <input
+                            type="text"
+                            placeholder="Enter a title for your creation..."
+                            value={newPostTitle}
+                            onChange={(e) => setNewPostTitle(e.target.value)}
+                            className="w-full px-3 py-2 border-2 border-black rounded-lg text-sm"
+                          />
+                        </div>
+                        
+                        {/* Post Button */}
+                        <div className="flex justify-end gap-2">
+                          <button 
+                            onClick={() => {
+                              setSelectedImage(null)
+                              setNewPostTitle("")
+                            }}
+                            className="px-4 py-2 bg-gray-200 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-sm"
+                          >
+                            Cancel
+                          </button>
+                          <button 
+                            onClick={handlePost}
+                            disabled={!selectedImage}
+                            className="px-4 py-2 bg-green-400 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all text-sm disabled:opacity-50"
+                          >
+                            Post Creation
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Community Photos */}
                 <div className="p-4 bg-white">
-                  {recipe.communityPics.map((submission) => (
+                  {communityPosts.map((submission) => (
                     <div key={submission.id} className="mb-4 border-3 border-black rounded-lg overflow-hidden">
-                      <div className="p-3 bg-pink-100 border-b-3 border-black flex items-center">
-                        <div className="w-8 h-8 rounded-full border-2 border-black overflow-hidden mr-2">
-                          <Image
-                            src={submission.userAvatar}
-                            alt={`${submission.userName}'s Avatar`}
-                            width={40}
-                            height={40}
-                            className="object-cover"
-                          />
+                      <div className="p-3 bg-pink-100 border-b-3 border-black">
+                        <div className="flex items-center mb-2">
+                          <div className="w-8 h-8 rounded-full border-2 border-black overflow-hidden mr-2">
+                            <Image
+                              src={submission.userAvatar}
+                              alt={`${submission.userName}'s Avatar`}
+                              width={40}
+                              height={40}
+                              className="object-cover"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-sm">{submission.userName}</h4>
+                            <p className="text-xs">{submission.timeAgo}</p>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="font-bold text-sm">{submission.userName}</h4>
-                          <p className="text-xs">{submission.timeAgo}</p>
-                        </div>
+                        {submission.title && (
+                          <h3 className="text-lg font-bold text-black mb-1">{submission.title}</h3>
+                        )}
                       </div>
                       <div className="relative h-[180px]">
                         <Image
@@ -447,8 +593,13 @@ export default function RecipeDetailPage() {
                       <div className="p-3 bg-yellow-100 border-t-3 border-black">
                         <p className="mb-2 text-sm">{submission.comment}</p>
                         <div className="flex gap-3 mb-3">
-                          <button className="flex items-center gap-1 px-2 py-1 bg-pink-300 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all text-xs">
-                            <Heart size={12} className="fill-black" />
+                          <button 
+                            onClick={() => handleLike(submission.id)}
+                            className={`flex items-center gap-1 px-2 py-1 ${
+                              submission.isLiked ? 'bg-red-400' : 'bg-pink-300'
+                            } rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all text-xs`}
+                          >
+                            <Heart size={12} className={submission.isLiked ? "fill-white" : "fill-black"} />
                             <span className="font-bold">{submission.likes}</span>
                           </button>
                           <button className="flex items-center gap-1 px-2 py-1 bg-blue-300 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all text-xs">
@@ -468,14 +619,19 @@ export default function RecipeDetailPage() {
                           </div>
                         )}
 
-                        {/* Add Comment - Simplified */}
+                        {/* Add Comment - With functionality */}
                         <div className="flex gap-2">
                           <input
                             type="text"
                             placeholder="Comment..."
+                            value={newComment[submission.id] || ""}
+                            onChange={(e) => setNewComment(prev => ({...prev, [submission.id]: e.target.value}))}
                             className="flex-1 px-2 py-1 border-2 border-black rounded-lg text-xs"
                           />
-                          <button className="p-1 bg-green-300 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all">
+                          <button 
+                            onClick={() => handleComment(submission.id, newComment[submission.id])}
+                            className="p-1 bg-green-300 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
+                          >
                             <Send size={14} />
                           </button>
                         </div>

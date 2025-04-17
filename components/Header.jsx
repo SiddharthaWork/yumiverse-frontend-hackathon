@@ -52,6 +52,12 @@ export default function Header() {
           >
             Recipes
           </button>
+          <button 
+            onClick={scrollToSection('subscribe')}
+            className="font-medium hover:underline"
+          >
+            Subscribe
+          </button>
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">

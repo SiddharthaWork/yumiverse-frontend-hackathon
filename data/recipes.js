@@ -36,7 +36,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Jessica Parker",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/8.jpg",
         image: "https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg",
         comment: "Made this for dinner last night and it was amazing! I added some extra garlic. 😋",
         likes: 24,
@@ -50,7 +50,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Marcus Chen",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/9.jpg",
         image: "https://images.pexels.com/photos/6210959/pexels-photo-6210959.jpeg",
         comment: "I added grilled chicken on top. Highly recommend!",
         likes: 42,
@@ -91,7 +91,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Sarah Wilson",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/10.jpg",
         image: "https://images.pexels.com/photos/5737581/pexels-photo-5737581.jpeg",
         comment: "Perfect summer recipe! Added some diced pineapple for extra sweetness 🌞",
         likes: 35,
@@ -138,7 +138,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Olivia Davis",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/11.jpg",
         image: "https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg",
         comment: "Turned out great! My kids loved it.",
         likes: 18,
@@ -152,7 +152,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Ethan Clark",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/12.jpg",
         image: "https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg",
         comment: "Family loved it. Added extra lemon juice for zing.",
         likes: 27,
@@ -203,7 +203,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Rachel Green",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/13.jpg",
         image: "https://images.pexels.com/photos/5949897/pexels-photo-5949897.jpeg",
         comment: "Best lasagna I've ever made! Added spinach layers.",
         likes: 50,
@@ -217,7 +217,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Monica Geller",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/14.jpg",
         image: "https://images.pexels.com/photos/6287527/pexels-photo-6287527.jpeg",
         comment: "Turned out a bit dry, next time I'll add more sauce.",
         likes: 22,
@@ -264,7 +264,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Liam Smith",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/15.jpg",
         image: "https://images.pexels.com/photos/5966431/pexels-photo-5966431.jpeg",
         comment: "Turned up the heat with extra jalapeños. Amazing!",
         likes: 30,
@@ -278,7 +278,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Noah Johnson",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/16.jpg",
         image: "https://images.pexels.com/photos/7729384/pexels-photo-7729384.jpeg",
         comment: "Perfect for game day. Added corn too.",
         likes: 18,
@@ -322,7 +322,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Emma Wilson",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/17.jpg",
         image: "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg",
         comment: "Loved the creaminess! Added a drizzle of pesto.",
         likes: 20,
@@ -336,7 +336,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Ava Martinez",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/18.jpg",
         image: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg",
         comment: "So comforting and easy to make.",
         likes: 15,
@@ -383,7 +383,7 @@ export const recipes = [
       {
         id: 1,
         userName: "James Brown",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/19.jpg",
         image: "https://images.pexels.com/photos/3738730/pexels-photo-3738730.jpeg",
         comment: "Kids devoured these! Added BBQ sauce.",
         likes: 28,
@@ -397,7 +397,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Sophia Miller",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/20.jpg",
         image: "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg",
         comment: "Perfect party snack. Paired with sweet potato fries.",
         likes: 19,
@@ -444,7 +444,7 @@ export const recipes = [
       {
         id: 1,
         userName: "Mia Anderson",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/female/21.jpg",
         image: "https://images.pexels.com/photos/3095066/pexels-photo-3095066.jpeg",
         comment: "Crispy outside, chewy inside just like described!",
         likes: 32,
@@ -458,7 +458,7 @@ export const recipes = [
       {
         id: 2,
         userName: "Lucas Lee",
-        userAvatar: "/placeholder.svg?height=40&width=40",
+        userAvatar: "https://xsgames.co/randomusers/assets/avatars/male/22.jpg",
         image: "https://images.pexels.com/photos/3095066/pexels-photo-3095066.jpeg",
         comment: "My go-to cookie recipe now.",
         likes: 21,
