@@ -55,7 +55,7 @@ export default function MobileMenu() {
               Login
             </Link>
             <Link
-              href="/signup"
+              href="/"
               className="neo-button bg-neo-purple text-black rounded mt-2"
               onClick={() => setIsOpen(false)}
             >
