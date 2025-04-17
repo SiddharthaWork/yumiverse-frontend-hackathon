@@ -459,7 +459,7 @@ export const recipes = [
         id: 2,
         userName: "Lucas Lee",
         userAvatar: "/placeholder.svg?height=40&width=40",
-        image: "https://images.pexels.com/photos/5717277/pexels-photo-5717277.jpeg",
+        image: "https://images.pexels.com/photos/3095066/pexels-photo-3095066.jpeg",
         comment: "My go-to cookie recipe now.",
         likes: 21,
         comments: 4,

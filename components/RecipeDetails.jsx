@@ -155,8 +155,8 @@ export default function RecipeDetailPage() {
                   <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
                     <div className="flex flex-col items-center p-2 sm:p-4 bg-yellow-100 border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                       <Clock className="mb-2 h-4 w-4 sm:h-6 sm:w-6" />
-                      <span className="text-xs sm:text-sm font-medium">Total Time</span>
-                      <span className="text-sm sm:text-xl font-bold">{recipe.cookingTime}</span>
+                      <span className="text-xs sm:text-sm font-medium text-center">Total Time</span>
+                      <span className="text-sm sm:text-xl font-bold text-center">{recipe.cookingTime}</span>
                     </div>
                     <div className="flex flex-col items-center p-2 sm:p-4 bg-pink-100 border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                       <Users className="mb-2 h-4 w-4 sm:h-6 sm:w-6" />
@@ -174,30 +174,60 @@ export default function RecipeDetailPage() {
                   <div className="flex flex-wrap justify-end gap-2 mb-6">
                     <button 
                       onClick={() => setIsSaved(!isSaved)}
-                      className={`flex items-center px-3 sm:px-6 py-2 text-sm sm:text-base font-bold rounded-full border-2 border-black 
+                      className={`flex items-center px-2 sm:px-3 md:px-4 lg:px-6 
+                        py-1.5 sm:py-2 md:py-2.5 lg:py-3
+                        text-xs sm:text-sm md:text-base lg:text-lg font-bold 
+                        rounded-full border-2 sm:border-3 md:border-4 border-black 
                         ${isSaved 
                           ? 'bg-red-600 text-white hover:bg-red-500' 
                           : 'bg-white text-black hover:bg-gray-50'
                         } 
-                        shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
-                        hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] 
-                        active:translate-y-2 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                        shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                        hover:-rotate-1 transform
+                        hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                        active:translate-y-[2px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]
                         transition-all duration-200`}
                     >
                       <Heart 
-                        className={`mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 ${isSaved ? 'fill-white' : 'fill-none'}`}
+                        className={`mr-1 sm:mr-1.5 md:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 ${isSaved ? 'fill-white' : 'fill-none'}`}
                       />
                       {isSaved ? 'Saved' : 'Save'}
                     </button>
-                    <button className="flex items-center px-3 sm:px-6 py-2 text-sm sm:text-base bg-orange-300 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all">
-                      <Share2 className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    <button 
+                      className="flex items-center 
+                        px-2 sm:px-3 md:px-4 lg:px-6 
+                        py-1.5 sm:py-2 md:py-2.5 lg:py-3
+                        text-xs sm:text-sm md:text-base lg:text-lg 
+                        bg-orange-300 text-black font-bold 
+                        rounded-full border-2 sm:border-3 md:border-4 border-black 
+                        shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                        hover:-rotate-1 transform
+                        hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                        active:translate-y-[2px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200"
+                    >
+                      <Share2 
+                        className="mr-1 sm:mr-1.5 md:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" 
+                      />
                       Share
                     </button>
                     <button 
                       onClick={scrollToCommunity}
-                      className="md:hidden flex items-center px-3 sm:px-6 py-2 text-sm sm:text-base bg-yellow-300 text-black font-bold rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all"
+                      className="md:hidden flex items-center 
+                        px-2 sm:px-3 md:px-4 lg:px-6 
+                        py-1.5 sm:py-2 md:py-2.5 lg:py-3
+                        text-xs sm:text-sm md:text-base lg:text-lg 
+                        bg-yellow-300 text-black font-bold 
+                        rounded-full border-2 sm:border-3 md:border-4 border-black 
+                        shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                        hover:-rotate-1 transform
+                        hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                        active:translate-y-[2px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200"
                     >
-                      <MessageCircle className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <MessageCircle 
+                        className="mr-1 sm:mr-1.5 md:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" 
+                      />
                       Community
                     </button>
                   </div>
